@@ -5,7 +5,7 @@ function displayMessage() {
     Swal.fire(
         {
             backdrop: false,
-            title: 'App Name',
+            title: 'Hundo',
             text: msg
         }
     );
