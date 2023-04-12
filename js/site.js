@@ -8,9 +8,11 @@ function getValues() {
     let startNumber = parseInt(startValue); // startNumber = 0
     let endNumber = parseInt(endValue);
 
-    if ( isNaN(startNumber) == false && Number.isInteger(endNumber)) {
+    if (Number.isInteger(startNumber) && Number.isInteger(endNumber)) {
+
     let numberArray = generateNumbers(startNumber, endNumber);
     displayNumbers(numberArray);
+    
     } else {
         // display an error
         Swal.fire({
