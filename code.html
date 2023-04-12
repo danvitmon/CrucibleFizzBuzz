@@ -97,15 +97,82 @@
     </header>
 
     <main class="container mt-3">
+      <h1 class="border-bottom border-2 border-dark">The Code</h1>
       <div class="row">
-        <div class="col">
-          <
-        </div>
-        <div class="col">
+          <div class="col-12 col-lg-8">
+              <pre class="line-numbers">
+                  <code class="language-js">
+// get the start and end numbers from the inputs
+// Entry Point aka Controller function
+function getValues() {
+    let startValue = document.getElementById('startValue').value; // startValue = "0"
+    let endValue = document.getElementById('endValue').value;
 
-        </div>
+    let startNumber = parseInt(startValue); // startNumber = 0
+    let endNumber = parseInt(endValue);
+
+    let numberArray = generateNumbers(startNumber, endNumber);
+    displayNumbers(numberArray);
+}
+
+// generate the range of numbers to display
+// Business/logic function
+function generateNumbers(start, end) {
+
+    let basketOfNumbers= [];
+
+    for (let number = start; number <= end; number = number + 1) {
+        basketOfNumbers.push(number); 
+    }
+
+    return basketOfNumbers; // => [0, 1, 2, ..., 100]
+
+}
+
+// placing the generated numbers on the page AND bolding the even numbers
+// View function
+function displayNumbers(numbers) { // [0, 1, 2, 3, 4, 5, ..., 100] => length is 101
+    // start = 10, end = 15
+    // numbers =[10, 11, 12, 13, 14, 15]
+    // numbers.length = 6
+
+    let results = '';
+
+    for (let index = 0; index < numbers.length; index = index + 1) {
+        let currentNumber = numbers[index];
+
+        if (currentNumber % 2 == 0){
+        results = results + `&lt;tr>&lt;td class="evenNumber">${currentNumber}&lt;/td>&lt;/tr>`;
+    } else {
+        results += `&lt;tr>&lt;td>${currentNumber}&lt;/td>&lt;/tr>`;
+    }
+        // index = 0
+        // results = "" + "&lt;tr>&lt;td>" + 10 + "&lt;/tr>&lt;/td>"
+
+        // index = 1
+        // results = "&lt;tr>&lt;td>10&lt;/td>&lt;/tr>&lt;tr>&lt;td>11&lt;/td>&lt;/tr>&lt;tr>&lt;td>12&lt;/td>&lt;/tr>"
+    }
+
+    
+    let tableBody = document.getElementById('results');
+    tableBody.innerHTML = results; // => <tr><td>10</td></tr>...
+}
+                  </code>
+              </pre>
+          </div>
+          <div class="col-12 col-lg-4">
+              <p>
+                The code is structured in three functions. The first function gets the values from where the user input the start values, and the end values. The start value is then labeled startValue, and the end value is labeled endValue. These are then given an integer value and another label as startNumber for the startValue, and endNumber for the endValue. These are then stored in the numberArray, which uses the return statement to create an ordered list of the numbers within the start and end values.
+
+              </p>
+              <h5>
+                The next function utilizes a blank array, basketOfNumbers, that uses the for loop to generate those values within the start and end values. If the start value is 0, and the end value is 10, the for loop assigns 0 to start, therefore number = 0. Then the function checks if the number is equal to or greater than the end value, 10. If it isn't, the function carries onto the next step, which adds 1 to the number. This loop continues until the number is equal to or greater than that end value. These values are then pushed into the basketOfNumbers and stored.</h5>
+              <p>
+                The final function is responsible for checking if the number is even or odd, and will bold all even numbers. It is also responsible for creating the results value and storing the numbers in it. In the for loop, the index value is given a value of 0. The index is then checked to be less than the length of numbers. If it isn't then the index increases by 1, and the index value is then assigned to the currentNumber. The next step figures out if the current number is even. If the current number is divisible by 2, and has no remainder, then it will be given the class of evenNumber, which bolds that number in the table and throws the correct code into the HTML to display that value. If the number is divisible by 2, but has a remainder of anythinb but 0, it won't be bold, but will still throw the correct code into the HTML to display that current value. Finally, the results are assigned to the tableBody, and the stylized table is seen showing the results.
+              </p>
+          </div>
       </div>
-    </main>
+  </main>
 
     <footer class="py-3">
       <div

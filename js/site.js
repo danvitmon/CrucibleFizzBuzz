@@ -8,8 +8,17 @@ function getValues() {
     let startNumber = parseInt(startValue); // startNumber = 0
     let endNumber = parseInt(endValue);
 
+    if ( isNaN(startNumber) == false && Number.isInteger(endNumber)) {
     let numberArray = generateNumbers(startNumber, endNumber);
     displayNumbers(numberArray);
+    } else {
+        // display an error
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'Please enter valid numbers for the start and end values'
+        });
+    }
 }
 
 // generate the range of numbers to display
@@ -19,7 +28,6 @@ function generateNumbers(start, end) {
     let basketOfNumbers= [];
 
     for (let number = start; number <= end; number = number + 1) {
-        number;
         basketOfNumbers.push(number); 
     }
 
@@ -39,7 +47,11 @@ function displayNumbers(numbers) { // [0, 1, 2, 3, 4, 5, ..., 100] => length is 
     for (let index = 0; index < numbers.length; index = index + 1) {
         let currentNumber = numbers[index];
 
-        results = results + "<tr><td>" + currentNumber + "</td></tr>";
+        if (currentNumber % 2 == 0){
+        results = results + `<tr><td class="evenNumber">${currentNumber}</td></tr>`;
+    } else {
+        results += `<tr><td>${currentNumber}</td></tr>`;
+    }
         // index = 0
         // results = "" + "<tr><td>" + 10 + "</tr></td>"
 
